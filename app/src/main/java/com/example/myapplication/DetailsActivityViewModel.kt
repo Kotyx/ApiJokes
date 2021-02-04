@@ -4,14 +4,12 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 
 class DetailsActivityViewModel : ViewModel() {
+    var texto=""
 
-
-    suspend fun getSingleItem(userChoice : String) {
-        return withContext(Dispatchers.IO) {
-            val resultado = GlobalScope.async {
-                DownloadManager.downloadApiSingleResult(userChoice)
-            }
-            resultado.await()
-        }
+    fun recibirtexto(text:String){
+        texto =text
+    }
+    fun enviartexto(): String {
+        return texto
     }
 }

@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             DetailsActivity.createDetailsActivity(this)
         }
 
+
     }
 
     private suspend fun hideProgressBar() = withContext(Dispatchers.Main) {

@@ -5,18 +5,17 @@ import kotlinx.coroutines.*
 
 class MainActivityViewModel : ViewModel() {
 
-    private var listas : List<Jokes>? = null
 
-    suspend fun getApiResults() {
+
+    suspend fun getApiResults():List<Jokes>? {
         return withContext(Dispatchers.IO) {
             val resultado = GlobalScope.async {
-                DownloadManager.downloadApiResults(this@MainActivityViewModel)
+                DownloadManager.downloadApiResults()
             }
             resultado.await()
         }
     }
 
-    fun getlist(lista:List<Jokes>){
-        listas=lista
-    }
+
+
 }

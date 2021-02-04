@@ -8,7 +8,9 @@
     android:paddingTop="24dp"
     android:paddingBottom="24dp"
     android:background="@color/cardview_shadow_start_color"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:clickable="true"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tv_activity_main_item"

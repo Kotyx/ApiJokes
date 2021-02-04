@@ -24,6 +24,10 @@ class AdapterString : RecyclerView.Adapter<AdapterString.StringViewHolder>()  {
         datos?.let {
             holder.textView.text = it[position].toString()
         }
+        holder.textView.setOnClickListener(){
+            var texto=holder.textView.getText().toString()
+            DetailsActivity.recibirtexto(texto)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -33,7 +37,9 @@ class AdapterString : RecyclerView.Adapter<AdapterString.StringViewHolder>()  {
         return 0
     }
 
-    suspend fun setData(jokes : List<Jokes>){
+
+
+    suspend fun setData(jokes : List<Jokes>?){
         datos = jokes
         withContext(Dispatchers.Main){
             notifyDataSetChanged()

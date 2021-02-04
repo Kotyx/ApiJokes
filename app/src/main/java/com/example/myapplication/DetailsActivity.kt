@@ -38,11 +38,21 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
+
+
     companion object {
+        var texto=""
 
         fun createDetailsActivity(context : Context) {
             val intent = Intent(context, DetailsActivity::class.java)
+            if(texto != null){
+                intent.putExtra("valor", texto)
+            }
             context.startActivity(intent)
+        }
+
+        fun recibirtexto(text:String){
+            texto=text
         }
     }
 }
