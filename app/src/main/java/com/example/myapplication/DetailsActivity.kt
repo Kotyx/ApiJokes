@@ -29,9 +29,9 @@ class DetailsActivity : AppCompatActivity() {
         binding.bBuscar.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
             GlobalScope.launch (Dispatchers.IO) {
-                val resultado = model.getSingleItem(binding.etDetails.text.toString())
+                val resultado = enviartexto()
                 withContext(Dispatchers.Main){
-                    binding.tvResultados.text = resultado.toString()
+                    binding.tvResultados.text = resultado
                     binding.progressBar.visibility = View.GONE
                 }
             }
@@ -53,6 +53,9 @@ class DetailsActivity : AppCompatActivity() {
 
         fun recibirtexto(text:String){
             texto=text
+        }
+        fun enviartexto(): String {
+            return texto
         }
     }
 }
