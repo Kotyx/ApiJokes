@@ -19,13 +19,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/et_activity_details"
+        android:hint="et_activity_details"
         />
     <Button
         android:id="@+id/b_buscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/b_search"
+        android:text="b_search"
         />
     <TextView
         android:id="@+id/tv_resultados"

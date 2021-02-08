@@ -11,6 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.Serializable
+
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -29,9 +31,9 @@ class DetailsActivity : AppCompatActivity() {
         binding.bBuscar.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
             GlobalScope.launch (Dispatchers.IO) {
-                val resultado = enviartexto()
+                val resultado = intent.getSerializableExtra(SHARE)
                 withContext(Dispatchers.Main){
-                    binding.tvResultados.text = resultado
+                    binding.tvResultados.text = resultado.toString()
                     binding.progressBar.visibility = View.GONE
                 }
             }
@@ -39,23 +41,17 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
-
+    @Serializable
     companion object {
-        var texto=""
+        private const val SHARE = "TAG_EJEMPLO"
 
-        fun createDetailsActivity(context : Context) {
+
+        fun createDetailsActivity(context : Context,valor:Jokes) {
             val intent = Intent(context, DetailsActivity::class.java)
-            if(texto != null){
-                intent.putExtra("valor", texto)
-            }
+            intent.putExtra("SHARE", valor)
             context.startActivity(intent)
         }
 
-        fun recibirtexto(text:String){
-            texto=text
-        }
-        fun enviartexto(): String {
-            return texto
-        }
+
     }
 }

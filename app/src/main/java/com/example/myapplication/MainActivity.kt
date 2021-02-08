@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.bSiguiente.setOnClickListener {
-            DetailsActivity.createDetailsActivity(this)
+            DetailsActivity.createDetailsActivity(this,adapter.trans)
         }
 
 
