@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.delay
 import okhttp3.*
+import org.json.JSONArray
 import java.io.IOException
 
 class DownloadManager {
@@ -24,9 +25,8 @@ class DownloadManager {
             val bodyInString = call.execute().body?.string()
             var a = bodyInString?.let {
                 Log.w("GetJokes", bodyInString)
-                val JsonObject = JSONObject(bodyInString)
+                val results = JSONArray(bodyInString)
 
-                val results = JsonObject.optJSONArray("results")
                 results?.let {
                     Log.w("GetJokes", results.toString())
                     val gson = Gson()
@@ -40,7 +40,7 @@ class DownloadManager {
             }
             return a
         }
-        suspend fun downloadApiSingleResult(userChoice: String): String {
+        /*suspend fun downloadApiSingleResult(userChoice: String): String {
             // CONEXION A INTERNET
             // OKHTTP....
             delay(3000)
@@ -49,7 +49,7 @@ class DownloadManager {
                 2 -> "RESULTADO 2"
                 else -> "OTROS RESULTADOS"
             }
-        }
+        }*/
     }
 
 }
