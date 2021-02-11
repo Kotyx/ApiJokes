@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 
-
+@Serializable
 class DetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsBinding
@@ -27,28 +27,22 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         model = ViewModelProvider(this).get(DetailsActivityViewModel::class.java)
+        val transpaso=intent.getStringExtra(SHARE)
 
-        binding.bBuscar.setOnClickListener {
-            binding.progressBar.visibility = View.VISIBLE
-            GlobalScope.launch (Dispatchers.IO) {
-                val resultado = intent.getSerializableExtra(SHARE)
-                withContext(Dispatchers.Main){
-                    binding.tvResultados.text = resultado.toString()
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
-        }
+        binding.tvResultados.setText(transpaso)
+
+
     }
 
 
-    @Serializable
+
     companion object {
         private const val SHARE = "TAG_EJEMPLO"
 
 
-        fun createDetailsActivity(context : Context,valor:Jokes) {
+        fun createDetailsActivity(context : Context,valor:String) {
             val intent = Intent(context, DetailsActivity::class.java)
-            intent.putExtra("SHARE", valor)
+            intent.putExtra(SHARE, valor)
             context.startActivity(intent)
         }
 

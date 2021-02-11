@@ -11,9 +11,9 @@ import kotlinx.coroutines.withContext
 class AdapterString : RecyclerView.Adapter<AdapterString.StringViewHolder>()  {
 
     private var datos : List<Jokes>? = null
-    lateinit var trans : Jokes
+    var jokeSeleccionada : Jokes? = null
 
-    class StringViewHolder(root: View, val textView: TextView) : RecyclerView.ViewHolder(root)
+    class StringViewHolder(var root: View, val textView: TextView) : RecyclerView.ViewHolder(root)
 
     private lateinit var recyclerView : RecyclerView
 
@@ -24,16 +24,14 @@ class AdapterString : RecyclerView.Adapter<AdapterString.StringViewHolder>()  {
     }
 
     override fun onBindViewHolder(holder: StringViewHolder, position: Int) {
-        datos?.let {
-            holder.textView.text = it[position].toString()
-        }
-        holder.textView.setOnClickListener {
-            val pos = recyclerView.getChildLayoutPosition(it)
-            datos?.let {
-                trans= datos!![pos]
+        datos?.let { jokesList ->
+            holder.textView.text = jokesList[position].toString()
+            holder.root.setOnClickListener {
+                val pos = recyclerView.getChildLayoutPosition(it)
+                jokeSeleccionada= jokesList[pos]
             }
-
         }
+
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {

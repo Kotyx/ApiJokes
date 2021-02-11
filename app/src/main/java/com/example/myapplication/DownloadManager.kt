@@ -22,7 +22,8 @@ class DownloadManager {
                 .url(url)
                 .build()
             val call = client.newCall(request)
-            val bodyInString = call.execute().body?.string()
+            val response = call.execute()
+            val bodyInString = response.body?.string()
             var a = bodyInString?.let {
                 Log.w("GetJokes", bodyInString)
                 val results = JSONArray(bodyInString)

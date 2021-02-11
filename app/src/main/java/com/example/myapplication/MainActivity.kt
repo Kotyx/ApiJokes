@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -34,7 +35,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.bSiguiente.setOnClickListener {
-            DetailsActivity.createDetailsActivity(this,adapter.trans)
+            adapter.jokeSeleccionada?.let {
+                DetailsActivity.createDetailsActivity(this, it.setup)
+
+            }
+
+            /*val intent = Intent(this, DetailsActivity::class.java)
+            intent.putExtra("SHARE", adapter.trans.toString())
+            startActivity(intent)*/
         }
 
 
