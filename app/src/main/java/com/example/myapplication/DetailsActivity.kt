@@ -27,9 +27,10 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         model = ViewModelProvider(this).get(DetailsActivityViewModel::class.java)
-        val transpaso=intent.getStringExtra(SHARE)
+        var transpaso=intent.getStringExtra(SHARE)
+        var transpaso2=intent.getStringExtra(SHARE2)
 
-        binding.tvResultados.setText(transpaso)
+        binding.tvResultados.setText(transpaso+"\n"+transpaso2)
 
 
     }
@@ -38,11 +39,13 @@ class DetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val SHARE = "TAG_EJEMPLO"
+        private const val SHARE2 = "TAG_EJEMPLO"
 
 
-        fun createDetailsActivity(context : Context,valor:String) {
+        fun createDetailsActivity(context : Context,valor:String,valor2:String) {
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(SHARE, valor)
+            intent.putExtra(SHARE2, valor2)
             context.startActivity(intent)
         }
 

@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.bSiguiente.setOnClickListener {
             adapter.jokeSeleccionada?.let {
-                DetailsActivity.createDetailsActivity(this, it.setup)
+                DetailsActivity.createDetailsActivity(this, it.setup,it.punchline)
 
             }
 
